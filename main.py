@@ -20,13 +20,14 @@ def q_function(x, y):
 
 if __name__ == '__main__':
 
-    methods = ['simple-iteration', 'optimal-parameter', 'seidel', 'upper-relaxation']
+    methods = ['simple-iteration', 'optimal-parameter', 'seidel', 'upper-relaxation', 'chebyshev-parameters',
+               'alternating-triangular']
 
     constants = [1, 3, 1, 1]        # [c1, c2, d1, d2], where [0 < c1 <= p(x, y) <= c2], [0 < d1 <= q(x, y) <= d2]
 
     args = [u_function, f_function, p_function, q_function, constants, 1, np.pi, 5, 5, 1e-5]
 
-    i = 1                           # current method
+    i = 4                           # current method
 
     if i == 0:
         method = IterativeMethods.SimpleIterationMethod(*args)
@@ -36,6 +37,10 @@ if __name__ == '__main__':
         method = IterativeMethods.SeidelMethod(*args)
     elif i == 3:
         method = IterativeMethods.UpperRelaxationMethod(*args)
+    elif i == 4:
+        method = IterativeMethods.ChebyshevParametersMethod(*args)
+    elif i == 5:
+        method = IterativeMethods.AlternatingTriangularMethod(*args)
     else:
         raise Exception('Unknown method.')
 
